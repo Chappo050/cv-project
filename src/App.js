@@ -12,10 +12,13 @@ class App extends Component {
       fullName: { text: "", id: 0 },
       email: { text: "", id: 0 },
       number: { text: "", id: 0 },
+
+      schoolInfo: [],
+      schoolName: { text: "", id: 0 },
+      study: { text: "", id: 0 },
+      completionDate: { text: "", id: 0 },
     };
   }
-
-
 
   handleChange = (e) => {
     this.setState({
@@ -26,16 +29,46 @@ class App extends Component {
   onSubmitBasic = (e) => {
     e.preventDefault();
     this.setState({
-      info: ( this.state.info.length = 0,
-        this.state.info.concat(this.state.fullName.text, this.state.email.text, this.state.number.text)),
+      info:
+        ((this.state.info.length = 0),
+        this.state.info.concat(
+          this.state.fullName.text,
+          this.state.email.text,
+          this.state.number.text
+        )),
       fullName: { text: "" },
       email: { text: "" },
       number: { text: "" },
     });
   };
 
+  onSubmitEducation = (e) => {
+    e.preventDefault();
+    this.setState({
+      schoolInfo:
+        ((this.state.schoolInfo.length = 0),
+        this.state.schoolInfo.concat(
+          this.state.schoolName.text,
+          this.state.study.text,
+          this.state.completionDate.text
+        )),
+      schoolName: { text: "" },
+      study: { text: "" },
+      completionDate: { text: "" },
+    });
+  };
+
   render() {
-    const { fullName, email, number, info } = this.state;
+    const {
+      fullName,
+      email,
+      number,
+      info,
+      schoolInfo,
+      schoolName,
+      study,
+      completionDate,
+    } = this.state;
     return (
       <div id="container">
         <div id="basicInfoForm">
@@ -73,7 +106,48 @@ class App extends Component {
             <button type="submit">Submit</button>
           </form>
         </div>
-        <BasicInfo infoArray={info}/>
+        <br />
+        <br />
+        <br />
+            <br />
+        <div id="educationForm">
+          <form onSubmit={this.onSubmitEducation}>
+            <label htmlFor="schoolInput">Name of School:</label>
+            <input
+              onChange={this.handleChange}
+              value={schoolName.text}
+              type="text"
+              id="schoolInput"
+              name="schoolName"
+            />
+            <br />
+            <br />
+            <label htmlFor="studyInput">Major:</label>
+            <input
+              onChange={this.handleChange}
+              value={study.text}
+              type="text"
+              id="studyInput"
+              name="study"
+            />
+            <br />
+            <br />
+            <label htmlFor="completionInput">Date of Completion:</label>
+            <input
+              onChange={this.handleChange}
+              value={completionDate.text}
+              type="text"
+              id="completionInput"
+              name="completionDate"
+            />
+            <br />
+            <br />
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+
+        <BasicInfo infoArray={info} />
+        <Education infoArray={schoolInfo} />
       </div>
     );
   }
