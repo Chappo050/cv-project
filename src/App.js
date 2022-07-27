@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import basicInfo from "./components/basicInfo";
+import BasicInfo from "./components/basicInfo";
 import Education from "./components/education";
 import Experience from "./components/experience";
 
@@ -8,11 +8,14 @@ class App extends Component {
     super();
 
     this.state = {
+      info: [],
       fullName: { text: "", id: 0 },
       email: { text: "", id: 0 },
       number: { text: "", id: 0 },
     };
   }
+
+
 
   handleChange = (e) => {
     this.setState({
@@ -20,9 +23,11 @@ class App extends Component {
     });
   };
 
-  onSubmitTask = (e) => {
+  onSubmitBasic = (e) => {
     e.preventDefault();
     this.setState({
+      info: ( this.state.info.length = 0,
+        this.state.info.concat(this.state.fullName.text, this.state.email.text, this.state.number.text)),
       fullName: { text: "" },
       email: { text: "" },
       number: { text: "" },
@@ -30,11 +35,11 @@ class App extends Component {
   };
 
   render() {
-    const { fullName, email, number } = this.state;
+    const { fullName, email, number, info } = this.state;
     return (
-      <div>
-        <div>
-          <form>
+      <div id="container">
+        <div id="basicInfoForm">
+          <form onSubmit={this.onSubmitBasic}>
             <label htmlFor="nameInput">Name:</label>
             <input
               onChange={this.handleChange}
@@ -68,6 +73,7 @@ class App extends Component {
             <button type="submit">Submit</button>
           </form>
         </div>
+        <BasicInfo infoArray={info}/>
       </div>
     );
   }

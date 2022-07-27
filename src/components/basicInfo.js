@@ -1,13 +1,19 @@
 import React, { Component } from "react";
 
-class basicInfo extends Component {
-
-  constructor() {
-    super();
-  }
+class BasicInfo extends Component {
   render() {
-    return <div>Hello World</div>;
+
+
+    return (
+      <div>
+        <label>{this.props.infoArray[0]}</label>
+        <br />
+        <label>{this.props.infoArray[1]}</label>
+        <br />
+        <label>{this.props.infoArray[2]}</label>
+      </div>
+    );
   }
 }
 
-export default basicInfo;
+export default BasicInfo;
