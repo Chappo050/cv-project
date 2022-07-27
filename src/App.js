@@ -17,6 +17,13 @@ class App extends Component {
       schoolName: { text: "", id: 0 },
       study: { text: "", id: 0 },
       completionDate: { text: "", id: 0 },
+
+      workInfo: [],
+      companyName: { text: "", id: 0 },
+      title: { text: "", id: 0 },
+      tasks: { text: "", id: 0 },
+      startDate: { text: "", id: 0 },
+      finishDate: { text: "", id: 0 },
     };
   }
 
@@ -58,6 +65,26 @@ class App extends Component {
     });
   };
 
+  onSubmitWork = (e) => {
+    e.preventDefault();
+    this.setState({
+      workInfo:
+        ((this.state.workInfo.length = 0),
+        this.state.workInfo.concat(
+          this.state.companyName.text,
+          this.state.title.text,
+          this.state.tasks.text,
+          this.state.startDate.text,
+          this.state.finishDate.text
+        )),
+      companyName: { text: "" },
+      title: { text: "" },
+      tasks: { text: "" },
+      startDate: { text: "" },
+      finishDate: { text: "" },
+    });
+  };
+
   render() {
     const {
       fullName,
@@ -68,6 +95,12 @@ class App extends Component {
       schoolName,
       study,
       completionDate,
+      workInfo,
+      companyName,
+      title,
+      tasks,
+      startDate,
+      finishDate,
     } = this.state;
     return (
       <div id="container">
@@ -109,7 +142,7 @@ class App extends Component {
         <br />
         <br />
         <br />
-            <br />
+        <br />
         <div id="educationForm">
           <form onSubmit={this.onSubmitEducation}>
             <label htmlFor="schoolInput">Name of School:</label>
@@ -145,9 +178,72 @@ class App extends Component {
             <button type="submit">Submit</button>
           </form>
         </div>
-
+        <br />
+        <br />
+        <br />
+        <br />
+        <div id="workForm">
+          <form onSubmit={this.onSubmitWork}>
+            <label htmlFor="companyInput">Name of Company:</label>
+            <input
+              onChange={this.handleChange}
+              value={companyName.text}
+              type="text"
+              id="companyInput"
+              name="companyName"
+            />
+            <br />
+            <br />
+            <label htmlFor="titleInput">Position Title:</label>
+            <input
+              onChange={this.handleChange}
+              value={title.text}
+              type="text"
+              id="titleInput"
+              name="title"
+            />
+            <br />
+            <br />
+            <label htmlFor="tasksInput">Tasks:</label>
+            <input
+              onChange={this.handleChange}
+              value={tasks.text}
+              type="text"
+              id="tasksInput"
+              name="tasks"
+            />
+            <br />
+            <br />
+            <label htmlFor="startDateInput">Start Date:</label>
+            <input
+              onChange={this.handleChange}
+              value={startDate.text}
+              type="text"
+              id="startDateInput"
+              name="startDate"
+            />
+            <br />
+            <br />
+            <label htmlFor="finishDateInput">Finish Date:</label>
+            <input
+              onChange={this.handleChange}
+              value={finishDate.text}
+              type="text"
+              id="finishDateInput"
+              name="finishDate"
+            />
+            <br />
+            <br />
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+        <br />
+        <br />
+        <br />
+        <br />
         <BasicInfo infoArray={info} />
         <Education infoArray={schoolInfo} />
+        <Experience infoArray={workInfo} />
       </div>
     );
   }
