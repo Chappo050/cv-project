@@ -1,9 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
 
-class Experience extends Component {
-  render() {
+function Experience(props) {
     let hidden = true;
-    if (this.props.infoArray.length > 1) {
+    if (props.infoArray.length > 1) {
       hidden = false;
     }
 
@@ -12,22 +11,20 @@ class Experience extends Component {
         <label>EXPERIENCE</label>
         <br />
         <br />
-        <label>{this.props.infoArray[0]}</label>
+        <label>{props.infoArray[0]}</label>
         <br />
-        <label>{this.props.infoArray[1]}</label>
+        <label>{props.infoArray[1]}</label>
         <br />
-        <label>{this.props.infoArray[2]}</label>
+        <label>{props.infoArray[2]}</label>
         <br />
-        <label>{this.props.infoArray[3]}</label>
+        <label>{props.infoArray[3]}</label>
         <br />
-        <label>{this.props.infoArray[4]}</label>
+        <label>{props.infoArray[4]}</label>
         <br />
-        <button hidden={hidden} onClick={this.props.edit}>
+        <button hidden={hidden} onClick={props.edit}>
           Edit
         </button>
       </div>
     );
   }
-}
-
 export default Experience;

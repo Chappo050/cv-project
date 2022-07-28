@@ -1,29 +1,28 @@
-import React, { Component } from "react";
+import React from "react";
 
-class BasicInfo extends Component {
-  render() {
+function BasicInfo(props) {
     let hidden = true;
-    if (this.props.infoArray.length > 1) {
+    if (props.infoArray.length > 1) {
       hidden = false;
     }
+console.log(props.infoArray);
 
     return (
       <div className="basicRender">
         <label>BASIC INFORMATION</label>
         <br />
         <br />
-        <label>{this.props.infoArray[0]}</label>
+        <label>{props.infoArray[0]}</label>
         <br />
-        <label>{this.props.infoArray[1]}</label>
+        <label>{props.infoArray[1]}</label>
         <br />
-        <label>{this.props.infoArray[2]}</label>
+        <label>{props.infoArray[2]}</label>
         <br />
-        <button hidden={hidden} onClick={this.props.edit}>
+        <button hidden={hidden} onClick={props.edit}>
           Edit
         </button>
       </div>
     );
   }
-}
 
 export default BasicInfo;
