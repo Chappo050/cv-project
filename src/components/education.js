@@ -2,15 +2,25 @@ import React, { Component } from "react";
 
 class Education extends Component {
   render() {
-
+    let hidden = true;
+    if (this.props.infoArray.length > 1) {
+      hidden = false;
+    }
 
     return (
-      <div>
+      <div className="educationRender">
+        <label>EDUCATION BACKGROUND</label>
+        <br />
+        <br />
         <label>{this.props.infoArray[0]}</label>
         <br />
         <label>{this.props.infoArray[1]}</label>
         <br />
         <label>{this.props.infoArray[2]}</label>
+        <br />
+        <button hidden={hidden} onClick={this.props.edit}>
+          Edit
+        </button>
       </div>
     );
   }

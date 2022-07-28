@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import BasicInfo from "./components/basicInfo";
 import Education from "./components/education";
 import Experience from "./components/experience";
+import "./styles/app.css";
 
 class App extends Component {
   constructor() {
@@ -47,6 +48,7 @@ class App extends Component {
       email: { text: "" },
       number: { text: "" },
     });
+    document.getElementById("basicInfoForm").hidden = true;
   };
 
   onSubmitEducation = (e) => {
@@ -63,6 +65,7 @@ class App extends Component {
       study: { text: "" },
       completionDate: { text: "" },
     });
+    document.getElementById("educationForm").hidden = true;
   };
 
   onSubmitWork = (e) => {
@@ -83,6 +86,19 @@ class App extends Component {
       startDate: { text: "" },
       finishDate: { text: "" },
     });
+    document.getElementById("workForm").hidden = true;
+  };
+
+  onEditBasic = () => {
+    document.getElementById("basicInfoForm").hidden = false;
+  };
+
+  onEditEducation = () => {
+    document.getElementById("educationForm").hidden = false;
+  };
+
+  onEditWork = () => {
+    document.getElementById("workForm").hidden = false;
   };
 
   render() {
@@ -103,10 +119,13 @@ class App extends Component {
       finishDate,
     } = this.state;
     return (
-      <div id="container">
-        <div id="basicInfoForm">
+      <div className="container">
+        <div className="basicInfoForm" id="basicInfoForm">
           <form onSubmit={this.onSubmitBasic}>
-            <label htmlFor="nameInput">Name:</label>
+            <div>
+              <label htmlFor="nameInput">Name:</label>
+            </div>
+
             <input
               onChange={this.handleChange}
               value={fullName.text}
@@ -116,7 +135,10 @@ class App extends Component {
             />
             <br />
             <br />
-            <label htmlFor="emailInput">Email:</label>
+            <div>
+              <label htmlFor="emailInput">Email:</label>
+            </div>
+
             <input
               onChange={this.handleChange}
               value={email.text}
@@ -126,7 +148,10 @@ class App extends Component {
             />
             <br />
             <br />
-            <label htmlFor="phoneInput">Phone Number:</label>
+            <div>
+              <label htmlFor="phoneInput">Phone Number:</label>
+            </div>
+
             <input
               onChange={this.handleChange}
               value={number.text}
@@ -143,9 +168,11 @@ class App extends Component {
         <br />
         <br />
         <br />
-        <div id="educationForm">
+        <div className="educationForm" id="educationForm">
           <form onSubmit={this.onSubmitEducation}>
-            <label htmlFor="schoolInput">Name of School:</label>
+            <div>
+              <label htmlFor="schoolInput">Name of School:</label>
+            </div>
             <input
               onChange={this.handleChange}
               value={schoolName.text}
@@ -155,7 +182,9 @@ class App extends Component {
             />
             <br />
             <br />
-            <label htmlFor="studyInput">Major:</label>
+            <div>
+              <label htmlFor="studyInput">Major:</label>
+            </div>
             <input
               onChange={this.handleChange}
               value={study.text}
@@ -165,7 +194,9 @@ class App extends Component {
             />
             <br />
             <br />
-            <label htmlFor="completionInput">Date of Completion:</label>
+            <div>
+              <label htmlFor="completionInput">Date of Completion:</label>
+            </div>
             <input
               onChange={this.handleChange}
               value={completionDate.text}
@@ -182,9 +213,11 @@ class App extends Component {
         <br />
         <br />
         <br />
-        <div id="workForm">
+        <div className="workForm" id="workForm">
           <form onSubmit={this.onSubmitWork}>
-            <label htmlFor="companyInput">Name of Company:</label>
+            <div>
+              <label htmlFor="companyInput">Name of Company:</label>
+            </div>
             <input
               onChange={this.handleChange}
               value={companyName.text}
@@ -194,7 +227,9 @@ class App extends Component {
             />
             <br />
             <br />
-            <label htmlFor="titleInput">Position Title:</label>
+            <div>
+              <label htmlFor="titleInput">Position Title:</label>
+            </div>
             <input
               onChange={this.handleChange}
               value={title.text}
@@ -204,7 +239,9 @@ class App extends Component {
             />
             <br />
             <br />
-            <label htmlFor="tasksInput">Tasks:</label>
+            <div>
+              <label htmlFor="tasksInput">Tasks:</label>
+            </div>
             <input
               onChange={this.handleChange}
               value={tasks.text}
@@ -214,7 +251,9 @@ class App extends Component {
             />
             <br />
             <br />
-            <label htmlFor="startDateInput">Start Date:</label>
+            <div>
+              <label htmlFor="startDateInput">Start Date:</label>
+            </div>
             <input
               onChange={this.handleChange}
               value={startDate.text}
@@ -224,7 +263,9 @@ class App extends Component {
             />
             <br />
             <br />
-            <label htmlFor="finishDateInput">Finish Date:</label>
+            <div>
+              <label htmlFor="finishDateInput">Finish Date:</label>
+            </div>
             <input
               onChange={this.handleChange}
               value={finishDate.text}
@@ -241,9 +282,10 @@ class App extends Component {
         <br />
         <br />
         <br />
-        <BasicInfo infoArray={info} />
-        <Education infoArray={schoolInfo} />
-        <Experience infoArray={workInfo} />
+        <BasicInfo infoArray={info} edit={this.onEditBasic} />
+        <Education infoArray={schoolInfo} edit={this.onEditEducation} />
+        <Experience infoArray={workInfo} edit={this.onEditWork} />
+      
       </div>
     );
   }
